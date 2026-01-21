@@ -1,7 +1,9 @@
-export default function MainLayout({ children }: { children: React.ReactNode }) {
+import { Outlet } from "react-router-dom";
+
+export default function MainLayout() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
-      {children}
+    <div className="min-h-screen bg-background text-foreground">
+      <Outlet />
     </div>
   )
 }
