@@ -41,11 +41,7 @@ const updateProfile = async (req, res) => {
     }
 
     if (req.file) {
-      const b64 = Buffer.from(req.file.buffer).toString('base64');
-
-      const dataURI = 'data:' + req.file.mimetype + ';base64,' + b64;
-
-      user.profilePic = dataURI;
+      user.profilePic = req.file.path;
     }
 
     const updatedUser = await user.save();
