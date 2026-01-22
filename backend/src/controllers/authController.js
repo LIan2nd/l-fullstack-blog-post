@@ -1,6 +1,9 @@
 import User from "../models/User.js";
 import generateToken from "../utils/generateToken.js";
 
+// @desc    Register new user
+// @route   POST /api/auth/register
+// @access  Public
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -36,6 +39,9 @@ const registerUser = async (req, res) => {
   }
 }
 
+// @desc    Authenticate a user
+// @route   POST /api/auth/login
+// @access  Public
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
