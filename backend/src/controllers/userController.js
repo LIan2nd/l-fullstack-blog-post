@@ -36,25 +36,16 @@ const updateProfile = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Update name if provided
     if (req.body.name) {
       user.name = req.body.name;
     }
 
     if (req.file) {
-      // Hapus foto lama jika ada
-      if (user.profilePic) {
-        const oldFileName = path.basename(user.profilePic);
-        const oldPath = path.join(process.cwd(), 'uploads', oldFileName);
+      const b64 = Buffer.from(req.file.buffer).toString('base64');
 
-        // Cek apakah file ada sebelum dihapus
-        if (fs.existsSync(oldPath)) {
-          fs.unlinkSync(oldPath);
-        }
-      }
+      const dataURI = 'data:' + req.file.mimetype + ';base64,' + b64;
 
-      // Simpan path baru
-      user.profilePic = `/uploads/${req.file.filename}`;
+      user.profilePic = dataURI;
     }
 
     const updatedUser = await user.save();
@@ -67,7 +58,7 @@ const updateProfile = async (req, res) => {
       profilePic: updatedUser.profilePic,
     });
   } catch (error) {
-    console.error('Update profile error:', error.message);
+    console.error(error);
     res.status(500).json({ message: 'Server error' });
   }
 };
