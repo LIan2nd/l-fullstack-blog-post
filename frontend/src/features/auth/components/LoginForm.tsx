@@ -12,6 +12,7 @@ import { useLoginForm } from "../hooks/useLoginForm";
 import AuthCardHeader from "./Header";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { EyeClosedIcon, EyeIcon } from "lucide-react";
+import { Link } from "react-router";
 
 export const LoginForm = () => {
   const { form, onSubmit } = useLoginForm();
@@ -88,9 +89,9 @@ export const LoginForm = () => {
       <CardFooter>
         <p className="text-sm text-muted-foreground text-center w-full">
           Don&apos;t have an account?{" "}
-          <a href="/register" className="text-primary hover:underline">
+          <Link to="/register">
             Sign Up
-          </a>
+          </Link>
         </p>
       </CardFooter>
     </Card>

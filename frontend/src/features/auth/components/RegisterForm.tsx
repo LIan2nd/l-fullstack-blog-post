@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRegisterForm } from "../hooks/useRegisterForm";
 import AuthCardHeader from "./Header";
+import { Link } from "react-router";
 
 export const RegisterForm = () => {
   const { form, onSubmit } = useRegisterForm();
@@ -104,9 +105,9 @@ export const RegisterForm = () => {
       <CardFooter>
         <p className="text-sm text-muted-foreground text-center w-full">
           Already have an account?{" "}
-          <a href="/login" className="text-primary hover:underline">
+          <Link to="/login">
             Sign In
-          </a>
+          </Link>
         </p>
       </CardFooter>
     </Card>
